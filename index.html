@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <style>
+      .kc-form__page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .kc-form__page * {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1rem;
+      }
+
+      .kc-form__page .kc-form__container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 450px;
+      }
+
+      .kc-form__page .kc-form__heading {
+        color: #5345b2;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      .kc-form__page .kc-form__group {
+        display: flex;
+        flex-direction: column;
+        margin: 1rem 0;
+      }
+
+      .kc-form__page .kc-form__group.kc-form__horizontal {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .kc-form__page .kc-form__group-wrap {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: -1.2rem;
+      }
+
+      .kc-form__page .kc-form__label {
+        font-weight: 600;
+        margin: 0.3rem 0;
+      }
+
+      .kc-form__page .kc-form__input {
+        padding: 0.8rem 1.2rem;
+        border-radius: 6px;
+        outline: none;
+        border: 1px solid #a1a1a1;
+      }
+
+      .kc-form__page .kc-form__btn {
+        padding: 0.8rem 1.2rem;
+        border: none;
+        background-color: #5345b2;
+        color: white;
+        border-radius: 6px;
+      }
+
+      .kc-form__page .kc-form__group-footer {
+        display: flex;
+        justify-content: center;
+      }
+
+      .kc-form__page .kc-form__group-footer * {
+        font-size: 14px;
+      }
+    </style>
+    <div class="kc-form__page">
+      <div class="kc-form__container">
+        <h3 class="kc-form__heading">Đăng nhập vào hệ thống S2B</h3>
+        <form
+          action=""
+          id="kc-form-login"
+          class="kc-form__wrap ${properties.kcFormClass!}"
+          action="${url.loginAction}"
+          method="post">
+          <div class="kc-form__group">
+            <!-- <label for="username" class="kc-form__label"> Mã sinh viên: </label> -->
+            <label for="username" class="kc-form__label ${properties.kcLabelClass!}"><#if !realm.loginWithEmailAllowed>${msg("username")}<#elseif !realm.registrationEmailAsUsername>${msg("usernameOrEmail")}<#else>${msg("email")}</#if></label>
+            <!-- <input
+              id="username"
+              name="username"
+              type="text"
+              class="kc-form__input"
+              placeholder="Nhập mã sinh viên" /> -->
+              <#if usernameEditDisabled??>
+              <input id="username" class="kc-form__input ${properties.kcInputClass!}" name="username" value="${(login.username!'')}" type="text" disabled />
+          <#else>
+              <input id="username" class="kc-form__input ${properties.kcInputClass!}" name="username" value="${(login.username!'')}" type="text" autofocus autocomplete="off" />
+          </#if>
+          </div>
+
+          <div class="kc-form__group">
+            <label for="password" class="kc-form__label"> Mật khẩu: </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              class="kc-form__input"
+              placeholder="Nhập mật khẩu" />
+          </div>
+
+          <div class="kc-form__group-wrap">
+            <div class="kc-form__group kc-form__horizontal">
+              <input id="rememberMe" type="checkbox" class="kc-form__input" />
+              <label for="rememberMe" class="kc-form__label">
+                Nhớ mật khẩu
+              </label>
+            </div>
+
+            <div class="kc-form__group">Quên mật khẩu</div>
+          </div>
+
+          <div class="kc-form__group">
+            <button class="kc-form__btn" type="submit">Đăng nhập</button>
+          </div>
+
+          <div class="kc-form__group-footer">
+            <span> Bạn chưa có tài khoản? </span>
+            <span> Tạo tài khoản mới </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
